@@ -1,0 +1,15 @@
+nav
+  .nav-wrapper
+    = link_to "Foosball", "#", class: "brand-logo"
+    ul#nav-mobile.right.hide-on-med-and-down
+      li= link_to "User", users_path
+      li= link_to "User", users_path
+      li= link_to "User", users_path
+      li= link_to "User", users_path
+    ul#slide-out.side-nav
+      li= link_to "User", users_path
+      li= link_to "User", users_path
+      li= link_to "User", users_path
+      li= link_to "User", users_path
+    = link_to "#", class: "button-collapse", data: { activates: "slide-out" } do
+      i.mdi-navigation-menu
