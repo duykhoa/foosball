@@ -1,0 +1,8 @@
+name: foosball
+root: ~/Working/opensource/foosball
+
+windows:
+  - editor: vim
+  - server: rails s -p 9090
+  - server: spring rspec
+  - console: git fetch
