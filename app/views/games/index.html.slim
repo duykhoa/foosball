@@ -5,7 +5,9 @@ table
     tr
       th ID
       th Team1
+      th Score Team1
       th Team2
+      th Score Team2
       th
       th
 
@@ -14,7 +16,9 @@ table
       tr
         td = game.id
         td = game.team1
+        td = game.score_team1
         td = game.team2
+        td = game.score_team2
         td = link_to 'Show', game
         td = link_to 'Edit', edit_game_path(game)
         td = link_to 'Destroy', game, data: {:confirm => 'Are you sure?'}, :method => :delete
