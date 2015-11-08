@@ -3,7 +3,9 @@
 
   .form-inputs
     = f.input :team1_id, collection: Team.all
+    = f.input :score_team1
     = f.input :team2_id, collection: Team.all
+    = f.input :score_team2
 
   .form-actions
     = f.button :submit
