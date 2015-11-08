@@ -1,0 +1,12 @@
+= simple_form_for(@team) do |f|
+  = f.error_notification
+
+  .input-field
+    = f.input :name
+    br
+  .col.s12
+    = f.association :users, collection: User.all.map {|u| [u.first_name, u.id]}
+    br
+
+  .form-actions
+    = f.button :submit
