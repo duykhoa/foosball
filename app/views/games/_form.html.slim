@@ -2,6 +2,8 @@
   = f.error_notification
 
   .form-inputs
+    = f.input :team1, collection: Team.all
+    = f.input :team2, collection: Team.all
 
   .form-actions
     = f.button :submit

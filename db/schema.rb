@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107161719) do
+ActiveRecord::Schema.define(version: 20151108054232) do
 
   create_table "games", force: :cascade do |t|
     t.integer  "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "team1_id"
+    t.integer  "team2_id"
   end
 
   create_table "matches", force: :cascade do |t|
