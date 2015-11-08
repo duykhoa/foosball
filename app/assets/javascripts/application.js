@@ -16,4 +16,4 @@
 //= require_tree .
 //
 
-$(document).ready(Booty.init);
+$(document).on('ready page:load', Booty.init);

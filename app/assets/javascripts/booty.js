@@ -1,6 +1,7 @@
-Booty = {
+var Booty = {
   init: function() {
     Booty.sideNav();
+    Booty.enableSelectField();
   },
   sideNav: function() {
     $('.button-collapse').sideNav({
@@ -9,6 +10,9 @@ Booty = {
           closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
         }
       );
+  },
+  enableSelectField: function() {
+    $('select').material_select();
   }
 }
 
