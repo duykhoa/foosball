@@ -53,7 +53,6 @@ class MatchesController < ApplicationController
       game.team2 = @match.team2
     end
 
-    debugger
     respond_to do |format|
       if @match.save
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
