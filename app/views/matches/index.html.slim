@@ -19,11 +19,13 @@ table
               li.collection-item
                 p
                   = link_to "#" do
-                    = game.team1
+                    span.chip{class = "#{'yellow white-text' if game.team1.id == game.winning_team_id}"}
+                      = game.team1
                     span.badge= game.score_team1
                 p
                   = link_to "#" do
-                    = game.team2
+                    span.chip{class = "#{'yellow white-text' if game.team2.id == game.winning_team_id}"}
+                      = game.team2
                     span.badge= game.score_team2
 
         td
