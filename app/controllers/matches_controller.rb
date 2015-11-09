@@ -15,6 +15,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
+    @match.games.build
   end
 
   # GET /matches/1/edit

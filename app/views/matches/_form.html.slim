@@ -2,6 +2,13 @@
   = f.error_notification
 
   .form-inputs
+    .card
+      .card-content
+        = f.simple_fields_for :games do |game|
+          = game.input :team1_id, collection: Team.all
+          = game.input :score_team1
+          = game.input :team2_id, collection: Team.all
+          = game.input :score_team2
 
   .form-actions
     = f.button :submit
