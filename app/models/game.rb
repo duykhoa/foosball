@@ -6,4 +6,14 @@ class Game < ActiveRecord::Base
   validates :score_team1, :score_team2,
     numericality: { greater_than: 0, less_than: 11, message: "Score must be in 0-10"}
 
+  before_save :update_winning_team_id
+
+  def update_winning_team_id
+    return unless score_team1 == 10 || score_team2 == 10
+    if score_team1 > score_team2
+      self.winning_team_id = team1_id
+    elsif score_team2 > score_team1
+      self.winning_team_id = team2_id
+    end
+  end
 end
