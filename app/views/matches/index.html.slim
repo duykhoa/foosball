@@ -1,6 +1,6 @@
 h1 Listing matches
 
-table
+table.highlight
   thead
     tr
       th Games
@@ -35,6 +35,8 @@ table
             i.material-icons visibility
           = link_to edit_match_path(match), class: "btn btn-floating blue user-action" do
             i.material-icons edit
+          = link_to match_path(match), method: :delete, confirm: "Are you sure?", class: "btn btn-floating red user-action" do
+            i.material-icons delete
 
 br
 

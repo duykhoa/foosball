@@ -2,7 +2,6 @@ var Booty = {
   init: function() {
     Booty.sideNav();
     Booty.enableSelectField();
-    Booty.addDuplicatableNestedForm();
     Booty.storeDuplicatedForm();
   },
   sideNav: function() {
@@ -18,6 +17,9 @@ var Booty = {
   storeDuplicatedForm: function() {
     if ($('.duplicatable_nested_form').length) {
       nestedForm = $('.duplicatable_nested_form').last().clone();
+      $(".destroy_duplicate_nested_form:first").remove();
+      Booty.addDuplicatableNestedForm();
+      Booty.destroyDuplicatableNestedForm();
     }
   },
   addDuplicatableNestedForm: function() {
@@ -41,10 +43,16 @@ var Booty = {
         $(this).attr('id', newId);
         oldName = $(this).attr('name');
         newName = oldName.replace(new RegExp(/\[[0-9]+\]/), "[" + formsOnPage + "]");
+        $(this).val("");
         return $(this).attr('name', newName);
       });
 
       $(newNestedForm).insertAfter(lastNestedForm);
+    });
+  },
+  destroyDuplicatableNestedForm: function() {
+    $('.destroy_duplicate_nested_form').on('click', function(e) {
+      $(this).closest('.duplicatable_nested_form').slideUp().remove()
     });
   }
 }
