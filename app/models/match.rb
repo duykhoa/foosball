@@ -4,7 +4,7 @@ class Match < ActiveRecord::Base
   belongs_to :team1, class_name: Team, foreign_key: "team1_id"
   belongs_to :team2, class_name: Team, foreign_key: "team2_id"
 
-  validates_length_of :games, maximum: 3, minimum: 2
+  validates_length_of :games, maximum: 3
 
   accepts_nested_attributes_for :games
 end
