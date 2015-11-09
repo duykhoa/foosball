@@ -1,0 +1,39 @@
+h1 Listing matches
+
+table
+  thead
+    tr
+      th Games
+      th Scores
+      th Winner
+      th
+      th
+
+  tbody
+    - @matches.each do |match|
+      tr
+        td = match.games.size
+        td
+          ul.collection
+            - match.games.each do |game|
+              li.collection-item
+                p
+                  = link_to "#" do
+                    = game.team1
+                    span.badge= game.score_team1
+                p
+                  = link_to "#" do
+                    = game.team2
+                    span.badge= game.score_team2
+
+        td
+          span.chip.red.white-text= match.team1
+        td
+          = link_to match, class: "btn btn-floating blue user-action" do
+            i.material-icons visibility
+          = link_to edit_match_path(match), class: "btn btn-floating blue user-action" do
+            i.material-icons edit
+
+br
+
+= link_to 'New Match', new_match_path
