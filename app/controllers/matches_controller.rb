@@ -46,8 +46,16 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
+    @match.assign_attributes(match_params)
+
+    @match.games.each do |game|
+      game.team1 = @match.team1
+      game.team2 = @match.team2
+    end
+
+    debugger
     respond_to do |format|
-      if @match.update(match_params)
+      if @match.save
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
         format.json { render :show, status: :ok, location: @match }
       else
@@ -75,6 +83,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:team1_id, :team2_id, games_attributes: [:score_team1, :score_team2])
+      params.require(:match).permit(:team1_id, :team2_id, games_attributes: [:id, :score_team1, :score_team2])
     end
 end
