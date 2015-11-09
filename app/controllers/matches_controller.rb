@@ -27,6 +27,11 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
 
+    @match.games.each do |game|
+      game.team1 = @match.team1
+      game.team2 = @match.team2
+    end
+
     respond_to do |format|
       if @match.save
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
@@ -70,6 +75,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:team1_id, :team2_id)
+      params.require(:match).permit(:team1_id, :team2_id, games_attributes: [:score_team1, :score_team2])
     end
 end
