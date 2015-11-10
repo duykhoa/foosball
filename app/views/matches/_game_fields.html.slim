@@ -1,2 +1,7 @@
 = f.input :score_team1
 = f.input :score_team2
+- if f.object.new_record?
+	= link_to 'Remove', '', :class => 'destroy_duplicate_nested_form'
+- else
+	= link_to 'Remove', game_path(f.object), :method => :delete, :remote => true, :class => 'destroy_duplicate_nested_form'
+	= f.input :id, as: :hidden
