@@ -1,5 +1,6 @@
 class Match < ActiveRecord::Base
   has_and_belongs_to_many :games, join_table: "matches_games"
+  belongs_to :winning_team, foreign_key: "winning_team_id", class_name: Team
 
   belongs_to :team1, class_name: Team, foreign_key: "team1_id"
   belongs_to :team2, class_name: Team, foreign_key: "team2_id"
