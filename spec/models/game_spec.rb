@@ -44,4 +44,18 @@ RSpec.describe Game, type: :model do
       end
     end
   end
+
+  describe "#single" do
+    let!(:game) { FactoryGirl.create(:game) }
+
+    context "all single game" do
+      it { expect(Game.single).to include game }
+    end
+
+    context "exclude match's game" do
+      let(:match) { FactoryGirl.create(:match) }
+      it { expect(Game.single).to include game }
+      it { expect(Game.single.count).to eq 1 }
+    end
+  end
 end

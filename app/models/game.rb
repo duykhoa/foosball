@@ -8,6 +8,19 @@ class Game < ActiveRecord::Base
 
   before_save :update_winning_team_id
 
+  # Public: Return all game that doesn't belongs to a match
+  #
+  # Example
+  #
+  #   Game.single
+  #
+  # Return
+  #   An array of games
+  def self.single
+    joins("LEFT JOIN matches_games ON matches_games.game_id = games.id")
+      .where("matches_games.match_id IS NULL")
+  end
+
   # Internal: Update winning team id for game model
   #   It's a cache field, help finding the winner faster
   #
