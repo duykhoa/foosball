@@ -1,0 +1,19 @@
+h1 Listing game_histories
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @game_histories.each do |game_history|
+      tr
+        td = link_to 'Show', game_history
+        td = link_to 'Edit', edit_game_history_path(game_history)
+        td = link_to 'Destroy', game_history, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Game history', new_game_history_path
