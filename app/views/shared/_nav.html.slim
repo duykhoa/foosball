@@ -1,17 +1,34 @@
+ul#game-dropdown.dropdown-content
+  li= link_to "All games", games_path
+  li= link_to "Single game only", game_histories_path
+  li= link_to "Matches", game_histories_path
+
 nav.green
   .nav-wrapper
     = link_to "Foosball", "#", class: "brand-logo"
     ul#nav-mobile.right.hide-on-med-and-down
       li= link_to "User", users_path
       li= link_to "Team", teams_path
-      li= link_to "Game", games_path
-      li= link_to "Match", matches_path
+      li
+        = link_to  "#", class: "dropdown-button", data: {activates: "game-dropdown"} do
+          span Game history
+          i.material-icons.right arrow_drop_down
       li= link_to "Stat", matches_path
     ul#slide-out.side-nav
       li= link_to "User", users_path
       li= link_to "Team", teams_path
-      li= link_to "Game", games_path
-      li= link_to "Match", matches_path
+      li.no-padding
+        ul.collapsible.collapsible-accordion
+          li
+            = link_to "#", class: "collapsible-header" do
+              strong Game History
+              i.mdi-navigation-arrow-drop-down.right
+            .collapsible-body
+              ul
+                li= link_to "All games", games_path
+                li= link_to "Single game only", game_histories_path
+                li= link_to "Matches", game_histories_path
+
       li= link_to "Stat", matches_path
     = link_to "#", class: "button-collapse", data: { activates: "slide-out" } do
       i.mdi-navigation-menu
