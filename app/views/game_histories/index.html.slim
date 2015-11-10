@@ -1,19 +1,22 @@
-h1 Listing game_histories
+h1 Game Histories
 
 table
   thead
     tr
-      th
-      th
-      th
+      th At
+      th Team 1
+      th Score Team1
+      th Team 2
+      th Score Team1
+      th Winner
 
   tbody
-    - @game_histories.each do |game_history|
+    - @game_histories.each do |game|
       tr
-        td = link_to 'Show', game_history
-        td = link_to 'Edit', edit_game_history_path(game_history)
-        td = link_to 'Destroy', game_history, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Game history', new_game_history_path
+        td = game.created_at.strftime("%d %b, %g:%M")
+        td = game.team1
+        td = game.score_team1
+        td = game.team2
+        td = game.score_team2
+        td
+          .chip.yellow.white-text= game.winning_team
