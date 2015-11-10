@@ -1,0 +1,77 @@
+.container-fluid
+  .row
+    .col.m3.s12
+      .card-panel.cyan.darken-1.white-text
+        p.title
+          i.material-icons.left person
+          span Total users
+        h4= User.count
+
+    .col.m3.s12
+      .card-panel.purple.white-text
+        p.title
+          i.material-icons.left people
+          span Total Teams
+        h4= Team.count
+
+    .col.m3.s12
+      .card-panel.deep-purple.white-text
+        p.title
+          i.material-icons.left whatshot
+          span Games
+        h4= Game.count
+
+    .col.m3.s12
+      .card-panel.blue-grey.white-text
+        p.title
+          i.material-icons.left timelapse
+          span Matches
+        h4= Match.count
+  .row
+    .col.m4.s12
+      .card.white
+        .card-image.waves-effect.waves-block.waves-light
+          img(src="https://cloud.githubusercontent.com/assets/2004218/11066897/fec8863e-8804-11e5-8888-8dd6716d0cab.jpg")
+        .card-content.grey-text
+          span.card-title.grey-text.text-darken-4 The Best Team
+          p.grey-text.text-darken-2= @best_team.name
+          - @best_team.users.each do |user|
+            p.clearfix
+              i.material-icons.cyan-text.text-darken-3.left person
+              = user.first_name
+          p
+            h3.red-text
+              span Total Wins:
+              = @best_team_stat.first.num_wins
+
+    .col.m4.s12
+      .card.white
+        .card-move-up.teal.waves-effect.waves-block.waves-yellow
+          .move-up
+            .ct-chart.ct-perfect-fourth
+        .card-content.grey-text
+					p Compare team
+
+    .col.m4.s12
+      .card.white
+        .card-move-up.teal.waves-effect.waves-block.waves-yellow
+          .move-up
+            .ct-chart.ct-perfect-fourth
+        .card-content.grey-text
+					p Compare team
+
+    .col.m4.s12
+      .card.white
+        .card-move-up.teal.waves-effect.waves-block.waves-yellow
+          .move-up
+            .ct-chart.ct-perfect-fourth
+        .card-content.grey-text
+					p Compare team
+
+javascript:
+  var data = {
+    labels: #{@best_team_stat.map(&:winning_team_id)},
+    series: #{@best_team_stat.map(&:num_wins)},
+  };
+  window.teamData = data;
+

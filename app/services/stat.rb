@@ -5,7 +5,6 @@ class Stat
       FROM games \
       GROUP BY winning_team_id \
       ORDER BY num_wins desc \
-      LIMIT 1 \
    ")
   end
 
