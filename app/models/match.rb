@@ -7,4 +7,9 @@ class Match < ActiveRecord::Base
   validates_length_of :games, maximum: 3
 
   accepts_nested_attributes_for :games
+
+  before_save :update_winning_team_id
+
+  def update_winning_team_id
+  end
 end
