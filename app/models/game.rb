@@ -8,6 +8,24 @@ class Game < ActiveRecord::Base
 
   before_save :update_winning_team_id
 
+  # Internal: Update winning team id for game model
+  #   It's a cache field, help finding the winner faster
+  #
+  #   This method will be trigger when a game is saved (create or update)
+  #
+  #   The winning_team_id is only updated when score reach to 10
+  #
+  # Example
+  #
+  #   Manually usage
+  #
+  #     game.update_winning_team_id
+  #
+  #   Automatically use
+  #
+  #     game.score_team1 = 10
+  #     game.score_team2 = 9
+  #     game.save! # => set the winning_team_id = team1_id
   def update_winning_team_id
     return unless score_team1 == 10 || score_team2 == 10
     if score_team1 > score_team2
