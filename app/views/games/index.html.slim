@@ -14,7 +14,7 @@ table
   tbody
     - @games.each do |game|
       tr
-        td = game.id
+        td = game.created_at.strftime("%d %b, %g:%M")
         td = game.team1
         td = game.score_team1
         td = game.team2
