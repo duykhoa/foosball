@@ -10,20 +10,32 @@ class Match < ActiveRecord::Base
 
   before_save :update_winning_team_id
 
+  # Internal: Update winning team id
+  #   It's a caching column to keep track the winner team for each match
+  #
+  #   A match requires at least 2 games
+  #   If a team wins 2 games, consider they are win, it works for both 3 & 2 games
+  #   If the number of winning & losing are same, can't define the winner yet (for 2 games case)
+  #
+  #   Will be triggered when match is save (create or update)
+  #
+  # Example
+  #
+  #    Manually update:
+  #      match.update_winning_team_id
+  #
+  #    Update by save
+  #      match.games.create(game_params) # create a game
+  #      match.save
   def update_winning_team_id
     return if games.size < 2
 
-    if games.size == 2
-      if games[0].winning_team_id == games[1].winning_team_id
-        self.winning_team_id = games[0].winning_team_id
-      end
-    else
-      winning_team_ids = games.pluck(:winning_team_id)
-      if winning_team_ids.count(team1_id) > winning_team_ids.count(team2_id)
-        self.winning_team_id = team1_id
-      else
-        self.winning_team_id = team2_id
-      end
+    winning_team_ids = games.pluck(:winning_team_id)
+
+    if winning_team_ids.count(team1_id) > winning_team_ids.count(team2_id)
+      self.winning_team_id = team1_id
+    elsif winning_team_ids.count(team1_id) < winning_team_ids.count(team2_id)
+      self.winning_team_id = team2_id
     end
   end
 end
