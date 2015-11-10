@@ -8,7 +8,7 @@ class Match < ActiveRecord::Base
 
   accepts_nested_attributes_for :games
 
-  #before_save :update_winning_team_id
+  before_save :update_winning_team_id
 
   def update_winning_team_id
     return if games.size < 2
