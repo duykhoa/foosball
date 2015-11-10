@@ -29,7 +29,9 @@ table.highlight
                     span.badge= game.score_team2
 
         td
-          span.chip.red.white-text= match.winning_team
+          - if match.winning_team
+            span.chip.red.white-text= match.winning_team
+
         td
           = link_to match, class: "btn btn-floating blue user-action" do
             i.material-icons visibility
