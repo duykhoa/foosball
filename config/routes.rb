@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :teams
   resources :games
   resources :matches
+  resources :game_histories, only: [:index]
 end

@@ -1,5 +1,5 @@
 class GameHistoriesController < ApplicationController
   def index
-    @game_histories = GameHistory.all
+    @games = Game.single
   end
 end
