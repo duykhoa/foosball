@@ -27,6 +27,46 @@
           i.material-icons.left timelapse
           span Matches
         h4= Match.count
+
+  .row
+    .col.m6.s12
+      .card
+        .card-content.grey-text
+          span.card-title.grey-text.text-darken-4 User stats
+          ul.collection
+            li.collection-item
+              .row
+                .col.s6
+                  .collections-title.grey-text.text-darken-4 User name
+                .col.s6
+                  i.material-icons.left.red-text star
+                  span.red-text Win / Lose
+
+            - @count_win_for_users.each do |key, value|
+              li.collection-item
+                .row
+                  .col.s6
+                    .collections-title.grey-text.text-darken-4 = value.first_name
+                    .collections-content
+                      span ID
+                      span.chip= value.user_id
+                  .col.s6
+                    span.chip.cyan = value.num_wins
+                    span /
+                    span.chip.light-blue = @total_game_for_users[key].total_games
+
+    .col.m6.s12
+      .card.grey.darken-4
+        .card-content.white-text
+          span.card-title.grey-text.text-darken-4 Guide
+          p
+            h5 In order to use this app
+          p First, create a user
+          p Create team, assign user to team
+          p Create game for 2 team
+          p Play 3 games => create match instead
+          p.deep-orange-text It's a responsive website, check it out
+
   .row
     .col.m4.s12
       .card.white
@@ -53,15 +93,16 @@
 					p Compare team
 
     .col.m4.s12
-      .card.white
-        .card-move-up.teal.waves-effect.waves-block.waves-yellow
-          .move-up
-            .ct-chart.ct-perfect-fourth
+      .card.orange
+        .card-image.waves-effect.waves-block.waves-light
+          img(src="https://cloud.githubusercontent.com/assets/2004218/11082043/ca25aa3a-885c-11e5-8d5b-c8f98861f32a.jpeg")
         .card-content.grey-text
-          - @count_win_for_users.each do |wins|
-            p= wins.num_wins
-            p= wins.first_name
-
+          span.card-title.grey-text.text-darken-4 The Best Player
+          - best_user = @count_win_for_users.values.first
+          p.white-text= best_user.first_name
+          p.white-text
+            span Game Wins:
+            = best_user.num_wins
 javascript:
   var data = {
     labels: #{@best_team_stat.map(&:winning_team_id)},
