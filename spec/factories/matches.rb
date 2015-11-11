@@ -3,8 +3,12 @@ FactoryGirl.define do
     association :team1, factory: :team
     association :team2, factory: :team
 
-    after(:create) do |match|
-      match.games << create(:game)
+    transient do
+      create_games true
+    end
+
+    after(:create) do |match, evaluator|
+      match.games << create(:game) if evaluator.create_games
     end
   end
 end
