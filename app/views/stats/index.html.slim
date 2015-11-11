@@ -58,15 +58,9 @@
           .move-up
             .ct-chart.ct-perfect-fourth
         .card-content.grey-text
-					p Compare team
-
-    .col.m4.s12
-      .card.white
-        .card-move-up.teal.waves-effect.waves-block.waves-yellow
-          .move-up
-            .ct-chart.ct-perfect-fourth
-        .card-content.grey-text
-					p Compare team
+          - @count_win_for_users.each do |wins|
+            p= wins.num_wins
+            p= wins.first_name
 
 javascript:
   var data = {
