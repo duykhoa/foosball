@@ -22,3 +22,7 @@ end
 3.times do
   game2 =  FactoryGirl.create(:game, team1: team2, team2: team3, score_team1: 10, score_team2: 8)
 end
+
+games = FactoryGirl.create_list(:game, 2, team1: team1, team2: team3, score_team1: 10, score_team2: 9)
+
+match = FactoryGirl.create(:match, games: games, team1: team1, team2: team2)
