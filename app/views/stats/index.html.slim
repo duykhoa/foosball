@@ -105,6 +105,24 @@
             p.white-text
               span Game Wins:
               = best_user.num_wins
+
+.fixed-action-btn.horizontal
+  a.btn-floating.btn-large.red
+    i.large.mdi-navigation-menu
+
+  ul
+    li
+      = link_to new_user_path, class: "btn-floating red" do
+        i.material-icons person_add
+    li
+      = link_to new_team_path, class: "btn-floating green" do
+        i.material-icons group_add
+    li
+      = link_to new_game_path, class: "btn-floating blue" do
+        i.material-icons games
+    li
+      = link_to new_match_path, class: "btn-floating pink" do
+        i.material-icons toys
 javascript:
   var data = {
     labels: #{@best_team_stat.map(&:winning_team_id)},
