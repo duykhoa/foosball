@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require chartist.min
+//= require stats
 //= require_tree .
 //
 
