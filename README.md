@@ -1,48 +1,42 @@
-Foosball
-================
+#Foosball
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+A simple application to manage foosball games
 
-Rails Composer is supported by developers who purchase our RailsApps tutorials.
+Support:
 
-Problems? Issues?
------------
+- Manage User
+- Manage Team
+- Manage Game
+- Manage Match
+- Show stat:
+  - Total user, team, games...
+  - Best team
+  - Best user
+  - Win/loose for each user
 
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
+#Install
 
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
+- Clone the project
+- Install ruby 2.2.3 (may need to install bundler gem as well)
+- Bundle install
+- `rake db:bootstrap`
+- `rails s`
 
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
+**Advance**
+For setup tmux session, view the `script/fooball`, change path, and call the setup.sh script
 
-Ruby on Rails
--------------
+#Things to know
+- A user can joins many teams
+- A team has 1-2 users
+- 2 teams play a game
+- A match includes 3 games, in of a team win 2 games in a row, consider win
 
-This application requires:
+#TODO
 
-- Ruby 2.2.3
-- Rails 4.2.4
+This is a very short time project, so some parts is developed in hurry.
 
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
+Need to refactor and write more tests.
 
-Getting Started
----------------
+Currently, I just cover the test for model & service only.
 
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+Also the view is little bit messy, need to be improved.
