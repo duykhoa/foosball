@@ -1,0 +1,17 @@
+= simple_form_for(@match) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :team1_id, collection: Team.all
+    = f.input :team2_id, collection: Team.all
+    br
+    = f.simple_fields_for :games do |game|
+      .duplicatable_nested_form
+        .card
+          .card-content
+            .card-title.grey-text Game
+            = render 'game_fields', f: game
+    = link_to 'Add another game', '#', class: 'add-nested-form'
+
+  .form-actions
+    = f.button :submit

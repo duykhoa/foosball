@@ -1,0 +1,25 @@
+h1 Listing users
+
+table.striped
+  thead
+    tr
+      th First Name
+      th Last Name
+      th Action
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.first_name
+        td = user.last_name
+        td
+          = link_to user, class: 'btn btn-floating blue user-action' do
+            i.material-icons visibility
+          = link_to edit_user_path(user), class: 'btn btn-floating blue user-action' do
+            i.material-icons edit
+          = link_to user, data: {:confirm => 'Are you sure?'}, :method => :delete,  class: 'btn btn-floating red user-action' do
+            i.material-icons delete
+
+br
+
+= link_to 'New User', new_user_path, class: 'btn green white-text'

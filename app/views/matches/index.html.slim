@@ -1,0 +1,45 @@
+h1 Listing matches
+
+table.highlight
+  thead
+    tr
+      th Games
+      th Scores
+      th Winner
+      th
+      th
+
+  tbody
+    - @matches.each do |match|
+      tr
+        td = match.games.size
+        td
+          ul.collection
+            - match.games.each do |game|
+              li.collection-item
+                p
+                  = link_to "#" do
+                    span.chip{class = "#{'yellow white-text' if game.team1.id == game.winning_team_id}"}
+                      = game.team1
+                    span.badge= game.score_team1
+                p
+                  = link_to "#" do
+                    span.chip{class = "#{'yellow white-text' if game.team2.id == game.winning_team_id}"}
+                      = game.team2
+                    span.badge= game.score_team2
+
+        td
+          - if match.winning_team
+            span.chip.red.white-text= match.winning_team
+
+        td
+          = link_to match, class: "btn btn-floating blue user-action" do
+            i.material-icons visibility
+          = link_to edit_match_path(match), class: "btn btn-floating blue user-action" do
+            i.material-icons edit
+          = link_to match_path(match), method: :delete, confirm: "Are you sure?", class: "btn btn-floating red user-action" do
+            i.material-icons delete
+
+br
+
+= link_to 'New Match', new_match_path

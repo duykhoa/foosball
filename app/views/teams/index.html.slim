@@ -1,0 +1,26 @@
+h1 Listing teams
+
+table
+  thead
+    tr
+      th ID
+      th Team name
+      th User1
+      th User2
+      th
+      th
+
+  tbody
+    - @teams.each do |team|
+      tr
+        td = team.id
+        td = team.name
+        td = team.users[0]
+        td = team.users[1]
+        td = link_to 'Show', team
+        td = link_to 'Edit', edit_team_path(team)
+        td = link_to 'Destroy', team, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Team', new_team_path

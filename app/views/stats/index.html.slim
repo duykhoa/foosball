@@ -1,0 +1,132 @@
+.container-fluid
+  .row
+    .col.m3.s12
+      .card-panel.cyan.darken-1.white-text
+        p.title
+          i.material-icons.left person
+          span Total users
+        h4= User.count
+
+    .col.m3.s12
+      .card-panel.purple.white-text
+        p.title
+          i.material-icons.left people
+          span Total Teams
+        h4= Team.count
+
+    .col.m3.s12
+      .card-panel.deep-purple.white-text
+        p.title
+          i.material-icons.left whatshot
+          span Games
+        h4= Game.count
+
+    .col.m3.s12
+      .card-panel.blue-grey.white-text
+        p.title
+          i.material-icons.left timelapse
+          span Matches
+        h4= Match.count
+
+  .row
+    .col.m6.s12
+      .card
+        .card-content.grey-text
+          span.card-title.grey-text.text-darken-4 User stats
+          ul.collection
+            li.collection-item
+              .row
+                .col.s6
+                  .collections-title.grey-text.text-darken-4 User name
+                .col.s6
+                  i.material-icons.left.red-text star
+                  span.red-text Win / Lose
+
+            - @count_win_for_users.each do |key, value|
+              li.collection-item
+                .row
+                  .col.s6
+                    .collections-title.grey-text.text-darken-4 = value.first_name
+                    .collections-content
+                      span ID
+                      span.chip= value.user_id
+                  .col.s6
+                    span.chip.cyan = value.num_wins
+                    span /
+                    span.chip.light-blue = @total_game_for_users[key].total_games
+
+    .col.m6.s12
+      .card.grey.darken-4
+        .card-content.white-text
+          span.card-title.grey-text.text-darken-4 Guide
+          p
+            h5 In order to use this app
+          p First, create a few users
+          p Create team, assign users to team
+          p Create game for 2 team
+          p Play 3 games => create match instead
+          p.deep-orange-text It's a responsive website, check it out
+
+  .row
+    - if @best_team
+      .col.m4.s12
+        .card.white
+          .card-image.waves-effect.waves-block.waves-light
+            img(src="https://cloud.githubusercontent.com/assets/2004218/11066897/fec8863e-8804-11e5-8888-8dd6716d0cab.jpg")
+          .card-content.grey-text
+            span.card-title.grey-text.text-darken-4 The Best Team
+            p.grey-text.text-darken-2= @best_team.name
+            - @best_team.users.each do |user|
+              p.clearfix
+                i.material-icons.cyan-text.text-darken-3.left person
+                = user.first_name
+            p
+              h3.red-text
+                span Total Wins:
+                = @best_team_stat.first.num_wins
+
+    .col.m4.s12
+      .card.white
+        .card-move-up.teal.waves-effect.waves-block.waves-yellow
+          .move-up
+            .ct-chart.ct-perfect-fourth
+        .card-content.grey-text
+					p Compare team
+
+    .col.m4.s12
+      .card.orange
+        .card-image.waves-effect.waves-block.waves-light
+          img(src="https://cloud.githubusercontent.com/assets/2004218/11082043/ca25aa3a-885c-11e5-8d5b-c8f98861f32a.jpeg")
+        .card-content.grey-text
+          span.card-title.grey-text.text-darken-4 The Best Player
+          - best_user = @count_win_for_users.values.first
+          - if best_user
+            p.white-text= best_user.first_name
+            p.white-text
+              span Game Wins:
+              = best_user.num_wins
+
+.fixed-action-btn.horizontal
+  a.btn-floating.btn-large.red
+    i.large.mdi-navigation-menu
+
+  ul
+    li
+      = link_to new_user_path, class: "btn-floating red" do
+        i.material-icons person_add
+    li
+      = link_to new_team_path, class: "btn-floating green" do
+        i.material-icons group_add
+    li
+      = link_to new_game_path, class: "btn-floating blue" do
+        i.material-icons games
+    li
+      = link_to new_match_path, class: "btn-floating pink" do
+        i.material-icons toys
+javascript:
+  var data = {
+    labels: #{@best_team_stat.map(&:winning_team_id)},
+    series: #{@best_team_stat.map(&:num_wins)},
+  };
+  window.teamData = data;
+
