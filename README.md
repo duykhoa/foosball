@@ -41,7 +41,7 @@ Support:
 - `rails s`
 
 **Advance**
-For setup tmux session, view the `script/fooball`, change path, and call the `setup.sh` script
+For setup tmux session, checkout the `script/fooball`, change path, and call the `setup.sh` script
 
 #Things to know
 - A user can joins many teams
