@@ -17,13 +17,31 @@ Support:
 #Install
 
 - Clone the project
-- Install ruby 2.2.3 (may need to install bundler gem as well)
+- Install ruby 2.2.3 (need to install bundler gem as well)
+- Config the database as follow
+  ```
+  default: &default
+    adapter: sqlite3
+    pool: 5
+    timeout: 5000
+
+  development:
+    <<: *default
+    database: db/development.sqlite3
+
+  # Warning: The database defined as "test" will be erased and
+  # re-generated from your development database when you run "rake".
+  # Do not set this db to the same as development or production.
+  test:
+    <<: *default
+    database: db/test.sqlite3
+  ```
 - Bundle install
 - `rake db:bootstrap`
 - `rails s`
 
 **Advance**
-For setup tmux session, view the `script/fooball`, change path, and call the setup.sh script
+For setup tmux session, view the `script/fooball`, change path, and call the `setup.sh` script
 
 #Things to know
 - A user can joins many teams
